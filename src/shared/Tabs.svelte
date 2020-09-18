@@ -7,7 +7,7 @@
 </script>
 
 <style>
-    .tabs ul {margin:0 auto; padding:0; list-style: none; text-align:center;}
+    .tabs ul {margin:0 auto 20px; padding:0; list-style: none; text-align:center;}
         .tabs li {display:inline-block; padding:10px; line-height: 40px; cursor:pointer;}
         .tabs li:hover {color:hsl(27, 100%, 54%)}
     .active {color:hsl(332, 100%, 50%); border-bottom:2px hsl(332, 100%, 50%) solid;}

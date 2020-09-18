@@ -1,10 +1,23 @@
-<script>    
+<script> 
+    
     export let poll;
+
+    import { createEventDispatcher } from 'svelte';
+    const dispatch = createEventDispatcher();
 
     //reactive values
     $: totalVotes = poll.votesA + poll.votesB
 
-   
+   //handling votes
+   const handleVote = (option, id) => {
+        dispatch('vote', {option, id});
+        console.log(option, id);
+        
+   };
+
+
+
+
 </script>
 
 <style>
@@ -17,13 +30,14 @@
 <div class="poll">
     <h3>{poll.question}</h3>
     <span class="totalVotes">(total: {totalVotes})</span>
-    <div class="option">
+    <div class="option" on:click={() => handleVote('a', poll.id)}>
         <div class="percent percent-a"></div>
         <span>{poll.optionA} ({poll.votesA})</span>
+        
     </div>
-    <div class="option">
+    <div class="option" on:click={() => handleVote('b', poll.id)}>
         <div class="percent percent-b"></div>
-        <span>{poll.optionB} ({poll.votesB})</span>
+        <span>{poll.optionB} ({poll.votesB})</span>    
     </div>
     
 </div>
