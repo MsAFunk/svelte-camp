@@ -882,7 +882,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (28:12) {#each mainNav as navItem}
+    // (31:12) {#each mainNav as navItem}
     function create_each_block(ctx) {
     	let li;
     	let a;
@@ -908,11 +908,11 @@ var app = (function () {
     			t0 = text(t0_value);
     			t1 = space();
     			attr_dev(a, "href", a_href_value = "#" + /*navItem*/ ctx[5]);
-    			attr_dev(a, "class", "svelte-1q47trt");
+    			attr_dev(a, "class", "svelte-1xs58eh");
     			toggle_class(a, "active", /*navItem*/ ctx[5] === /*currentPage*/ ctx[0]);
-    			add_location(a, file, 29, 16, 856);
-    			attr_dev(li, "class", "svelte-1q47trt");
-    			add_location(li, file, 28, 12, 783);
+    			add_location(a, file, 32, 16, 903);
+    			attr_dev(li, "class", "svelte-1xs58eh");
+    			add_location(li, file, 31, 12, 830);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -952,7 +952,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(28:12) {#each mainNav as navItem}",
+    		source: "(31:12) {#each mainNav as navItem}",
     		ctx
     	});
 
@@ -986,14 +986,14 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(h1, "class", "svelte-1q47trt");
-    			add_location(h1, file, 23, 4, 657);
-    			attr_dev(ul, "class", "svelte-1q47trt");
-    			add_location(ul, file, 26, 8, 725);
-    			attr_dev(nav, "class", "main-nav svelte-1q47trt");
-    			add_location(nav, file, 24, 4, 683);
-    			attr_dev(header, "class", "svelte-1q47trt");
-    			add_location(header, file, 22, 0, 643);
+    			attr_dev(h1, "class", "svelte-1xs58eh");
+    			add_location(h1, file, 26, 4, 704);
+    			attr_dev(ul, "class", "svelte-1xs58eh");
+    			add_location(ul, file, 29, 8, 772);
+    			attr_dev(nav, "class", "main-nav svelte-1xs58eh");
+    			add_location(nav, file, 27, 4, 730);
+    			attr_dev(header, "class", "svelte-1xs58eh");
+    			add_location(header, file, 25, 0, 690);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1283,11 +1283,11 @@ var app = (function () {
     		c: function create() {
     			button = element("button");
     			if (default_slot) default_slot.c();
-    			attr_dev(button, "class", button_class_value = "" + (null_to_empty(/*btnColor*/ ctx[0]) + " svelte-hrvt4w"));
+    			attr_dev(button, "class", button_class_value = "" + (null_to_empty(/*btnColor*/ ctx[0]) + " svelte-1jqjw40"));
     			toggle_class(button, "shadow", /*shadow*/ ctx[1]);
     			toggle_class(button, "ghost", /*ghost*/ ctx[2]);
     			toggle_class(button, "small", /*small*/ ctx[3]);
-    			add_location(button, file$2, 26, 0, 1214);
+    			add_location(button, file$2, 26, 0, 1272);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1313,7 +1313,7 @@ var app = (function () {
     				}
     			}
 
-    			if (!current || dirty & /*btnColor*/ 1 && button_class_value !== (button_class_value = "" + (null_to_empty(/*btnColor*/ ctx[0]) + " svelte-hrvt4w"))) {
+    			if (!current || dirty & /*btnColor*/ 1 && button_class_value !== (button_class_value = "" + (null_to_empty(/*btnColor*/ ctx[0]) + " svelte-1jqjw40"))) {
     				attr_dev(button, "class", button_class_value);
     			}
 
@@ -1464,8 +1464,8 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			if (default_slot) default_slot.c();
-    			attr_dev(div, "class", "card svelte-r47227");
-    			add_location(div, file$3, 7, 0, 198);
+    			attr_dev(div, "class", "card svelte-w4wa8c");
+    			add_location(div, file$3, 7, 0, 222);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2035,10 +2035,109 @@ var app = (function () {
         };
     }
 
+    function is_date(obj) {
+        return Object.prototype.toString.call(obj) === '[object Date]';
+    }
+
+    function get_interpolator(a, b) {
+        if (a === b || a !== a)
+            return () => a;
+        const type = typeof a;
+        if (type !== typeof b || Array.isArray(a) !== Array.isArray(b)) {
+            throw new Error('Cannot interpolate values of different type');
+        }
+        if (Array.isArray(a)) {
+            const arr = b.map((bi, i) => {
+                return get_interpolator(a[i], bi);
+            });
+            return t => arr.map(fn => fn(t));
+        }
+        if (type === 'object') {
+            if (!a || !b)
+                throw new Error('Object cannot be null');
+            if (is_date(a) && is_date(b)) {
+                a = a.getTime();
+                b = b.getTime();
+                const delta = b - a;
+                return t => new Date(a + t * delta);
+            }
+            const keys = Object.keys(b);
+            const interpolators = {};
+            keys.forEach(key => {
+                interpolators[key] = get_interpolator(a[key], b[key]);
+            });
+            return t => {
+                const result = {};
+                keys.forEach(key => {
+                    result[key] = interpolators[key](t);
+                });
+                return result;
+            };
+        }
+        if (type === 'number') {
+            const delta = b - a;
+            return t => a + t * delta;
+        }
+        throw new Error(`Cannot interpolate ${type} values`);
+    }
+    function tweened(value, defaults = {}) {
+        const store = writable(value);
+        let task;
+        let target_value = value;
+        function set(new_value, opts) {
+            if (value == null) {
+                store.set(value = new_value);
+                return Promise.resolve();
+            }
+            target_value = new_value;
+            let previous_task = task;
+            let started = false;
+            let { delay = 0, duration = 400, easing = identity, interpolate = get_interpolator } = assign(assign({}, defaults), opts);
+            if (duration === 0) {
+                if (previous_task) {
+                    previous_task.abort();
+                    previous_task = null;
+                }
+                store.set(value = target_value);
+                return Promise.resolve();
+            }
+            const start = now() + delay;
+            let fn;
+            task = loop(now => {
+                if (now < start)
+                    return true;
+                if (!started) {
+                    fn = interpolate(value, new_value);
+                    if (typeof duration === 'function')
+                        duration = duration(value, new_value);
+                    started = true;
+                }
+                if (previous_task) {
+                    previous_task.abort();
+                    previous_task = null;
+                }
+                const elapsed = now - start;
+                if (elapsed > duration) {
+                    store.set(value = new_value);
+                    return false;
+                }
+                // @ts-ignore
+                store.set(value = fn(easing(elapsed / duration)));
+                return true;
+            });
+            return task.promise;
+        }
+        return {
+            set,
+            update: (fn, opts) => set(fn(target_value, value), opts),
+            subscribe: store.subscribe
+        };
+    }
+
     /* src\Polls\PollDetails.svelte generated by Svelte v3.25.1 */
     const file$5 = "src\\Polls\\PollDetails.svelte";
 
-    // (66:8) <Button ghost={true} small={true} on:click={() => {handleDelete(poll.id)}}>
+    // (68:8) <Button ghost={true} small={true} on:click={() => {handleDelete(poll.id)}}>
     function create_default_slot_1$1(ctx) {
     	let t;
 
@@ -2058,14 +2157,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1$1.name,
     		type: "slot",
-    		source: "(66:8) <Button ghost={true} small={true} on:click={() => {handleDelete(poll.id)}}>",
+    		source: "(68:8) <Button ghost={true} small={true} on:click={() => {handleDelete(poll.id)}}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (53:0) <Card>
+    // (55:0) <Card>
     function create_default_slot$1(ctx) {
     	let div5;
     	let h3;
@@ -2148,27 +2247,27 @@ var app = (function () {
     			t17 = space();
     			div4 = element("div");
     			create_component(button.$$.fragment);
-    			add_location(h3, file$5, 54, 4, 1956);
-    			attr_dev(span0, "class", "totalVotes svelte-rkwijy");
-    			add_location(span0, file$5, 55, 4, 1986);
-    			attr_dev(div0, "class", "percent percent-a svelte-rkwijy");
+    			add_location(h3, file$5, 56, 4, 1982);
+    			attr_dev(span0, "class", "totalVotes svelte-87g87s");
+    			add_location(span0, file$5, 57, 4, 2012);
+    			attr_dev(div0, "class", "percent percent-a svelte-87g87s");
     			set_style(div0, "width", /*percentA*/ ctx[2] + "%");
-    			add_location(div0, file$5, 57, 8, 2117);
-    			attr_dev(span1, "class", "svelte-rkwijy");
-    			add_location(span1, file$5, 58, 8, 2190);
-    			attr_dev(div1, "class", "option svelte-rkwijy");
-    			add_location(div1, file$5, 56, 4, 2045);
-    			attr_dev(div2, "class", "percent percent-b svelte-rkwijy");
+    			add_location(div0, file$5, 59, 8, 2143);
+    			attr_dev(span1, "class", "svelte-87g87s");
+    			add_location(span1, file$5, 60, 8, 2216);
+    			attr_dev(div1, "class", "option svelte-87g87s");
+    			add_location(div1, file$5, 58, 4, 2071);
+    			attr_dev(div2, "class", "percent percent-b svelte-87g87s");
     			set_style(div2, "width", /*percentB*/ ctx[3] + "%");
-    			add_location(div2, file$5, 61, 8, 2325);
-    			attr_dev(span2, "class", "svelte-rkwijy");
-    			add_location(span2, file$5, 62, 8, 2398);
-    			attr_dev(div3, "class", "option svelte-rkwijy");
-    			add_location(div3, file$5, 60, 4, 2253);
-    			attr_dev(div4, "class", "delete svelte-rkwijy");
-    			add_location(div4, file$5, 64, 4, 2463);
+    			add_location(div2, file$5, 63, 8, 2351);
+    			attr_dev(span2, "class", "svelte-87g87s");
+    			add_location(span2, file$5, 64, 8, 2424);
+    			attr_dev(div3, "class", "option svelte-87g87s");
+    			add_location(div3, file$5, 62, 4, 2279);
+    			attr_dev(div4, "class", "delete svelte-87g87s");
+    			add_location(div4, file$5, 66, 4, 2489);
     			attr_dev(div5, "class", "poll");
-    			add_location(div5, file$5, 53, 0, 1932);
+    			add_location(div5, file$5, 55, 0, 1958);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div5, anchor);
@@ -2257,7 +2356,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$1.name,
     		type: "slot",
-    		source: "(53:0) <Card>",
+    		source: "(55:0) <Card>",
     		ctx
     	});
 
@@ -2326,6 +2425,7 @@ var app = (function () {
     	validate_slots("PollDetails", slots, []);
     	let { poll } = $$props;
 
+    	//tweened percentages
     	//handling votes
     	const handleVote = (option, id) => {
     		PollStore.update(currentPolls => {
@@ -2368,8 +2468,7 @@ var app = (function () {
     	};
 
     	$$self.$capture_state = () => ({
-    		fade,
-    		scale,
+    		tweened,
     		Card,
     		PollStore,
     		Button,
@@ -2705,11 +2804,11 @@ var app = (function () {
     			div = element("div");
     			t0 = text(t0_value);
     			t1 = space();
-    			attr_dev(div, "class", "svelte-s2khry");
+    			attr_dev(div, "class", "svelte-1ty44kk");
     			toggle_class(div, "active", /*item*/ ctx[4] === /*activeItem*/ ctx[1]);
-    			add_location(div, file$7, 19, 12, 754);
-    			attr_dev(li, "class", "svelte-s2khry");
-    			add_location(li, file$7, 18, 8, 601);
+    			add_location(div, file$7, 19, 12, 795);
+    			attr_dev(li, "class", "svelte-1ty44kk");
+    			add_location(li, file$7, 18, 8, 642);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -2768,10 +2867,10 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(ul, "class", "svelte-s2khry");
-    			add_location(ul, file$7, 16, 4, 556);
-    			attr_dev(div, "class", "tabs svelte-s2khry");
-    			add_location(div, file$7, 15, 0, 532);
+    			attr_dev(ul, "class", "svelte-1ty44kk");
+    			add_location(ul, file$7, 16, 4, 597);
+    			attr_dev(div, "class", "tabs svelte-1ty44kk");
+    			add_location(div, file$7, 15, 0, 573);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2910,7 +3009,7 @@ var app = (function () {
     /* src\Polls\PollsContent.svelte generated by Svelte v3.25.1 */
     const file$8 = "src\\Polls\\PollsContent.svelte";
 
-    // (31:41) 
+    // (25:41) 
     function create_if_block_1(ctx) {
     	let createpollform;
     	let current;
@@ -2944,14 +3043,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(31:41) ",
+    		source: "(25:41) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (29:1) {#if activeItem === 'Current Polls'}
+    // (23:1) {#if activeItem === 'Current Polls'}
     function create_if_block(ctx) {
     	let polllist;
     	let current;
@@ -2984,7 +3083,7 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(29:1) {#if activeItem === 'Current Polls'}",
+    		source: "(23:1) {#if activeItem === 'Current Polls'}",
     		ctx
     	});
 
@@ -3037,8 +3136,8 @@ var app = (function () {
     			t4 = space();
     			if (if_block) if_block.c();
     			if_block_anchor = empty();
-    			add_location(h1, file$8, 24, 0, 445);
-    			add_location(p, file$8, 25, 1, 462);
+    			add_location(h1, file$8, 18, 0, 418);
+    			add_location(p, file$8, 19, 1, 435);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");

@@ -13,9 +13,9 @@
         border-radius:5px;
     }
     .small {padding:2px 10px; margin:0 auto; font-size:12px}
-    .pink {color:#fff; background: hsl(332, 100%, 50%); border:1px solid hsl(330, 60%, 55%);}
-    .pink.ghost {color:hsl(330, 60%, 55%); background:transparent; border:1px hsl(330, 60%, 55%) solid;}
-    .pink.ghost:hover {color: #fff; background: hsl(332, 100%, 50%); border:1px hsl(330, 60%, 55%) solid;}
+    .pink {color:#fff; background: rgb(var(--accent-secondary)); border:1px solid rgb(var(--accent-secondary));}
+    .pink.ghost {color:rgb(var(--accent-secondary)); background:transparent; border:1px rgb(var(--accent-secondary)) solid;}
+    .pink.ghost:hover {color: #fff; background: rgb(var(--accent-secondary)); border:1px rgb(var(--accent-secondary)) solid;}
     
     .blue {color:#fff; background: hsl(210, 60%, 55%); border:1px solid hsl(210, 100%, 45%); }
     .blue.ghost {color:hsl(210, 55%, 60%); background: transparent; border:1px hsl(210, 60%, 55%) solid;}

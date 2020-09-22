@@ -1,3 +1,14 @@
+/* CSS Variables*/
+:root {
+  --main-bg-color: 26, 27, 38;
+  --secondary-bg-color:18, 18, 26;
+  --light-text: 151, 167, 210;
+  --accent-primary:172, 154, 213; /*Light Purple*/
+  --accent-secondary: 247, 118, 142; /*Pink*/
+  --accent-tertiary:241, 158, 80; /*Orange*/
+
+}
+
 /* Box sizing rules */
 *,
 *::before,
@@ -10,7 +21,7 @@ h1, h2, h3, h4, h5, h6,
 li, dl, dd,
 figure, figcaption, blockquote{ margin: 0; padding:0;}
 
-h3 {font-size:17px; color:hsl(330, 60%, 55%); font-weight:normal;}
+h3 {font-size:17px; color:rgb(var(--accent-secondary)); font-weight:normal;}
 
 /* Set core body defaults */
 body {
@@ -19,8 +30,8 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   font:16px/1.4 'Open Sans', sans-serif;
-  color: hsl(255, 25%, 70%);
-  background: hsl(245, 22%, 14%);
+  color: rgb(var(--light-text));
+  background: rgb(var(--main-bg-color));
   
 }
 

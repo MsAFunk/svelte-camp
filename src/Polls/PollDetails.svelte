@@ -1,15 +1,17 @@
 <script>
-    import {fade, scale } from 'svelte/transition';
+    import {tweened } from 'svelte/motion';
     import Card from '../shared/Card.svelte'; 
     import PollStore from '../stores/PollStore';
     import Button from '../shared/Button.svelte';
     export let poll;
-    
 
     //reactive values
     $: totalVotes = poll.votesA + poll.votesB
     $: percentA = Math.floor(100 / totalVotes * poll.votesA)
     $: percentB = Math.floor(100 / totalVotes * poll.votesB)
+
+    //tweened percentages
+
 
    //handling votes
     const handleVote = (option, id) => {
@@ -44,7 +46,7 @@
     .option {margin:10px auto; padding: 5px 10px; background: hsl(255, 50%, 87%); border-radius:2px; position:relative;}
         .option:hover {color:hsl(0, 0%, 20%); background: hsl(255, 50%, 90%); cursor:pointer }
     .percent {height:100%; position: absolute; top: 0; left: 0; }
-        .percent-a {border-left:4px hsl(330, 60%, 55%) solid; background:hsla(330, 60%, 55%, .7);}
+        .percent-a {border-left:4px hsl(330, 60%, 55%) solid; background:rgba(var(--accent-secondary), .5)}
         .percent-b {border-left:4px hsl(25, 100%, 50%) solid; background:hsla(25, 100%, 50%, .7);}
     .option span {color:#000; position:relative;}
     .delete {margin-top:30px; text-align:center;}
