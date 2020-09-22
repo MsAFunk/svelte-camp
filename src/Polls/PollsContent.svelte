@@ -16,7 +16,12 @@
     
 </script>
 
-<h1>Polls</h1>
+<style type="text/css">
+	h1 {color:#f00}
+	#green{color:green;}
+</style>
+
+<h1 id="green">Polls</h1>
 	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget quam velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc convallis egestas purus. Cras non mi sit amet lacus blandit sagittis sit amet sit amet nulla. Quisque varius, quam a pharetra vestibulum, lorem magna commodo metus, a convallis odio justo eu mi. </p>
 	<Tabs {items} {activeItem} on:tabChange={changeTab} />
 
