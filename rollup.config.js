@@ -39,7 +39,7 @@ export default {
 	plugins: [
 		svelte({
 			dev: !production,
-			css: css => {css.write('public/build/bundle.css')}, // haboudis?
+			css: css => {css.write('bundle.css')}, // haboudis?
 			preprocess: preprocess()
 		}),
 
