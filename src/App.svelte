@@ -2,8 +2,8 @@
 	import Header from './components/Header.svelte';
 	import Footer from './components/Footer.svelte';
 
-	import PollsContent from './PollsContent.svelte';
-	import GistContent from './GistContent.svelte';
+	import PollsContent from './Polls/PollsContent.svelte';
+	import GistContent from './GIST/GistContent.svelte';
 
 	//navigation
 	let mainNav = ['Polls', 'GIST', 'Placeholder'];

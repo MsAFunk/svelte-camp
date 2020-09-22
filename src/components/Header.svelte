@@ -10,13 +10,13 @@
 <style>
     header {
         width:100%; margin:0 auto; display:inline-block;
-        background-color:#e6e6e6
+        background-color:hsl(249, 27%, 10%);
     }
     h1 {font-size:24px; padding:10px 20px; display:inline-block;}
     .main-nav, .main-nav ul {display:inline-block; margin:0; padding:0;}
         .main-nav li{padding:10px 20px; display:inline-block; }
-        .main-nav a {color:rgb(255, 126, 20);}
-            .main-nav a.active {color:rgb(255, 0, 119);}
+        .main-nav a {color:hsl(25, 80%, 55%);}
+            .main-nav a.active {color:hsl(330, 60%, 55%);}
     
 </style>
 

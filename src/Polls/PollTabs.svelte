@@ -8,9 +8,9 @@
 
 <style>
     .tabs ul {margin:0 auto 20px; padding:0; list-style: none; text-align:center;}
-        .tabs li {display:inline-block; padding:10px; line-height: 40px; cursor:pointer;}
-        .tabs li:hover {color:hsl(27, 100%, 54%)}
-    .active {color:hsl(332, 100%, 50%); border-bottom:2px hsl(332, 100%, 50%) solid;}
+        .tabs li {display:inline-block; padding:10px; line-height: 40px; cursor:pointer;color:hsl(25, 80%, 55%)}
+        .tabs li:hover {color:hsl(25, 80%, 75%)}
+    .active {color:hsl(330, 60%, 55%); border-bottom:2px hsl(330, 60%, 55%) solid;}
 </style>
 
 <div class="tabs">

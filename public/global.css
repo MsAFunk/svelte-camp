@@ -10,6 +10,8 @@ h1, h2, h3, h4, h5, h6,
 li, dl, dd,
 figure, figcaption, blockquote{ margin: 0; padding:0;}
 
+h3 {font-size:17px; color:hsl(330, 60%, 55%); font-weight:normal;}
+
 /* Set core body defaults */
 body {
   min-height: 100vh;
@@ -17,6 +19,9 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   font:16px/1.4 'Open Sans', sans-serif;
+  color: hsl(255, 25%, 70%);
+  background: hsl(245, 22%, 14%);
+  
 }
 
 /* Remove list styles on ul, ol elements with a class attribute */
