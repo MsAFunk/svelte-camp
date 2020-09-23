@@ -47,17 +47,19 @@
     }
 </script>
 
-<style>
+<style type="text/scss">
+    @import '../styles/vars.scss';
+
     form {width:400px; margin:0 auto; padding:20px; border-radius:5px;}
         .form-field {margin:10px auto;}
         label{margin:0 0 10px 0; display:block; font-size:14px;}
         input[type="text"] {
             width:100%; margin:0 auto; padding: 5px 10px;
-            background: hsl(255, 50%, 87%); border:1px hsl(255,50%,80%); border-radius:2px;
+            background: $gray90; border:1px $gray80; border-radius:2px;
         }
-        input:focus{box-shadow:0 0 0 3px hsl(330, 60%, 55%); outline:none;}
+        input:focus{box-shadow:0 0 0 3px $accent-primary; outline:none;}
         .submit {text-align:center;}
-        .error {padding:5px 0; font-size:13px; color:hsl(0, 75%, 55%);}
+        .error {padding:5px 0; font-size:13px; color:$error;}
        
 </style>
 
@@ -81,7 +83,7 @@
             <div class="error">{errors.optionB}</div>
         </div>
         <div class="submit">
-            <Button btnColor="pink">Add Poll</Button>
+            <Button>Add Poll</Button>
         </div>
     </Card>
 </form>

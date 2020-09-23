@@ -6,11 +6,12 @@
     export let activeItem;
 </script>
 
-<style>
+<style type="text/scss">
+    @import '../styles/vars.scss';
     .tabs ul {margin:0 auto 20px; padding:0; list-style: none; text-align:center;}
-        .tabs li {display:inline-block; padding:10px; line-height: 40px; cursor:pointer;color:rgb(var(--accent-tertiary))}
-        .tabs li:hover {color:rbg(var(--accent-tertiary))}
-    .active {color:rgb(var(--accent-secondary)); border-bottom: 2px rgb(var(--accent-secondary)) solid;}
+        .tabs li {display:inline-block; padding:10px; line-height: 40px; cursor:pointer;color:$accent-secondary}
+        .tabs li:hover {color:$accent-secondary}
+    .active {color:$accent-primary; border-bottom: 2px $accent-primary solid;}
 </style>
 
 <div class="tabs">

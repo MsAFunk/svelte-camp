@@ -35,25 +35,32 @@
 
     const handleDelete = (id) => {
         PollStore.update(currentPolls => {
-            return currentPolls.filter(poll => poll.id != id); /* runs through currentPolls, and filters out all array items that don't match the poll.id from the delete button */
+            return currentPolls.filter(poll => poll.id != id); /* Updating Currentpolls by returning the array with all the items that don't match the poll.id from the delete button. */
         });
     };
 
 </script>
 
-<style>
-    .totalVotes {font-size:12px; color:hsl(255, 25%, 70%);}
-    .option {margin:10px auto; padding: 5px 10px; background: hsl(255, 50%, 87%); border-radius:2px; position:relative;}
-        .option:hover {color:hsl(0, 0%, 20%); background: hsl(255, 50%, 90%); cursor:pointer }
+<style type="text/scss">
+	@import '../styles/vars.scss';
+    
+    h3 {color:$accent-primary; font-weight:normal;}
+    .totalVotes {font-size:12px; color:$gray95;}
+    .option {margin:10px auto; padding: 5px 10px; background: $gray85; border-radius:2px; position:relative;
+        span {color:#000; position:relative;}
+        span::selection{background:rgba($gray95,.1)}
+    }
+    .option:hover {background: $gray95; cursor:pointer}
+    
     .percent {height:100%; position: absolute; top: 0; left: 0; }
-        .percent-a {border-left:4px hsl(330, 60%, 55%) solid; background:rgba(var(--accent-secondary), .5)}
-        .percent-b {border-left:4px hsl(25, 100%, 50%) solid; background:hsla(25, 100%, 50%, .7);}
-    .option span {color:#000; position:relative;}
+        .percent-a {border-left:4px $accent-primary solid; background:rgba($accent-primary, .5)}
+        .percent-b {border-left:4px $accent-secondary solid; background:rgba($accent-secondary, .7);}
+    
     .delete {margin-top:30px; text-align:center;}
 </style>
 
 <Card>
-<div class="poll">
+
     <h3>{poll.question}</h3>
     <span class="totalVotes">(total: {totalVotes})</span>
     <div class="option" on:click={() => handleVote('a', poll.id)}>
@@ -67,5 +74,5 @@
     <div class="delete">
         <Button ghost={true} small={true} on:click={() => {handleDelete(poll.id)}}>Delete</Button>
     </div>
-</div>
+
 </Card>

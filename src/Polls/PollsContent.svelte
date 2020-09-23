@@ -5,7 +5,7 @@
     
     //tabs
 	let items = ['Current Polls', 'Add New Poll'];
-	let activeItem = 'Add New Poll';
+	let activeItem = 'Current Polls';
 	const changeTab = (e) => {
 		activeItem = e.detail;
     }
@@ -15,9 +15,6 @@
     }
     
 </script>
-
-<style type="text/scss">
-</style>
 
 <h1>Polls</h1>
 	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget quam velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc convallis egestas purus. Cras non mi sit amet lacus blandit sagittis sit amet sit amet nulla. Quisque varius, quam a pharetra vestibulum, lorem magna commodo metus, a convallis odio justo eu mi. </p>

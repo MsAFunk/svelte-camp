@@ -7,18 +7,22 @@
 
 </script>
 
-<style>
-
+<style type="text/scss">
+    @import '../styles/vars.scss';
     
     header {
         width:100%; margin:0 auto; display:inline-block;
-        background-color:rgb(var(--secondary-bg-color));
+        background-color: $secondary-bg-color;
     }
     h1 {font-size:24px; padding:10px 20px; display:inline-block;}
-    .main-nav, .main-nav ul {display:inline-block; margin:0; padding:0;}
-        .main-nav li{padding:10px 20px; display:inline-block; }
-        .main-nav a {color:var(--accent-tertiary)}
-            .main-nav a.active {color:rgb(var(--accent-secondary))}
+    .main-nav, .main-nav ul {display:inline-block; margin:0; padding:0;
+        li{padding:10px 20px; display:inline-block; 
+            a {color:$accent-secondary;}
+            a.active {color:$accent-primary;}
+        }
+    }
+        
+        
             
     
 </style>
